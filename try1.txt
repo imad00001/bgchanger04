@@ -1,0 +1,117 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react'
+export default function App() {
+  const [randombgcolor, setrandombgcolor] = useState('#ffffff');
+  const [randomcirclecolor, setrandomcirclecolor] = useState('#000000');
+  const [randomtrianglecolor, setrandomtrianglecolor] = useState('#000000');
+  const genrateColor = () => {
+    const hexColor = '0123456789ABCDEF';
+    let color = '#';
+    let circolor = '#';
+    let tri = '#';
+
+    for (let i = 0; i < 6; i++) {
+      color += hexColor[Math.floor(Math.random() * 16)];
+      circolor += hexColor[Math.floor(Math.random() * 16)];
+      tri += hexColor[Math.floor(Math.random() * 16)];
+    }
+    setrandombgcolor(color);
+    setrandomcirclecolor(circolor);
+    setrandomtrianglecolor(tri);
+  };
+  return (
+    <>
+      <StatusBar backgroundColor={randombgcolor} />
+      <View style={styles.circlewrapper}>
+         <View style={[styles.circle, { backgroundColor: randomcirclecolor }]} />
+         <View style={[styles.circle, { backgroundColor: randomcirclecolor }]} />
+         <View style={[styles.circle, { backgroundColor: randomcirclecolor }]} />
+         <View style={[styles.circle, { backgroundColor: randomcirclecolor }]} />
+         <View style={[styles.circle, { backgroundColor: randomcirclecolor }]} />
+         <View style={[styles.circle, { backgroundColor: randomcirclecolor }]} />
+         <View style={[styles.circle, { backgroundColor: randomcirclecolor }]} />
+         <View style={[styles.circle, { backgroundColor: randomcirclecolor }]} />
+      </View>
+      <View style={[styles.buttonwrapper, { backgroundColor: randombgcolor }]}>
+        <TouchableOpacity onPress={genrateColor}>
+          <View style={styles.actionbtn}>
+            <Text style={styles.actionbtntxt}>press me</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.circlewrapper}>
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+         <View style={[styles.triangle, { borderBottomColor: randomtrianglecolor }]} />
+      </View>
+    </>
+  )
+}
+
+const styles = StyleSheet.create({
+  buttonwrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderLeftWidth: 50,
+    borderRightWidth: 50,
+    borderBottomWidth: 100,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    // borderBottomColor: 'red', // this will be overridden by inline style
+    margin: 1,
+  },
+
+  circle: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: 'blue',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  circlewrapper: {
+    flex: 1,
+    flexDirection : 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  actionbtn: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: [
+        { translateX: -310 }, // approximate half of button width
+        { translateY: -30 }, // approximate half of button height
+      ],
+      borderRadius: 8,
+      backgroundColor: '#6A1B4D',
+      paddingHorizontal: 40,
+      paddingVertical: 10,
+  },
+  actionbtn2: {
+    borderRadius: 8,
+    backgroundColor: '#6A1B4D',
+    paddingHorizontal: 40,
+    paddingVertical: 10,
+  },
+  actionbtntxt: {
+    fontSize: 24,
+    color: '#FFFFFF',
+    textTransform: 'uppercase',
+  },
+});
